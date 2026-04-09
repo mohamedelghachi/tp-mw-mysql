@@ -7,6 +7,7 @@
 <body style="font-family: Arial; margin: 40px;">
 <nav style="margin-bottom: 20px;">
 <a href="{{ route('home') }}">Home</a> |
+<a href="{{ route('contact') }}">Contact</a> |
 @auth
 <a href="{{ route('dashboard') }}">Dashboard</a> |
 <a href="{{ route('admin') }}">Admin</a> |
