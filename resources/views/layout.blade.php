@@ -8,6 +8,7 @@
 <nav style="margin-bottom: 20px;">
 <a href="{{ route('home') }}">Home</a> |
 <a href="{{ route('contact') }}">Contact</a> |
+<a href="{{ route('register.form') }}">Register</a> |
 @auth
 <a href="{{ route('dashboard') }}">Dashboard</a> |
 <a href="{{ route('admin') }}">Admin</a> |

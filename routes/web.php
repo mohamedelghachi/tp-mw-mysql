@@ -17,3 +17,6 @@ Route::get('/admin', fn() => view('admin'))
 
 Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact');
 Route::post('/contact', [ContactController::class, 'storeContactForm'])->name('contact.store');
+
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
