@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn() => view('home'))->name('home');
@@ -20,3 +21,8 @@ Route::post('/contact', [ContactController::class, 'storeContactForm'])->name('c
 
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+// Routes pour les produits - accessibles uniquement aux utilisateurs connectés
+Route::middleware('auth')->group(function () {
+    Route::resource('products', ProductController::class);
+});

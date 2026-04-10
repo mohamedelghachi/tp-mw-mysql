@@ -11,6 +11,7 @@
 <a href="{{ route('register.form') }}">Register</a> |
 @auth
 <a href="{{ route('dashboard') }}">Dashboard</a> |
+<a href="{{ route('products.index') }}">Produits</a> |
 <a href="{{ route('admin') }}">Admin</a> |
 <form action="{{ route('logout') }}" method="POST" style="display:inline;">
 @csrf
