@@ -45,7 +45,7 @@ class AuthController extends Controller
         $validated = $request->validate([
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/|confirmed',
             'age' => 'nullable|integer',
             'phone' => 'nullable|string',
         ], [
@@ -57,18 +57,19 @@ class AuthController extends Controller
             'password.required' => 'Le mot de passe est obligatoire.',
             'password.min' => 'Le mot de passe doit contenir au moins 6 caractères.',
             'password.confirmed' => 'La confirmation du mot de passe ne correspond pas.',
+            'password.regex' => 'prob regex',
             'age.integer' => 'L\'âge doit être un nombre entier.',
         ]);
         
-        $user = \App\Models\User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => bcrypt($validated['password']),
-            'age' => $validated['age'] ?? null,
-            'phone' => $validated['phone'] ?? null,
-        ]);
+        // $user = \App\Models\User::create([
+        //     'name' => $validated['name'],
+        //     'email' => $validated['email'],
+        //     'password' => bcrypt($validated['password']),
+        //     'age' => $validated['age'] ?? null,
+        //     'phone' => $validated['phone'] ?? null,
+        // ]);
         
-        Auth::login($user);
-        return redirect()->route('dashboard');
+        // Auth::login($user);
+        // return redirect()->route('dashboard');
     }
 }
