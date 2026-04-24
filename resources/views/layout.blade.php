@@ -12,6 +12,8 @@
 @auth
 <a href="{{ route('dashboard') }}">Dashboard</a> |
 <a href="{{ route('products.index') }}">Produits</a> |
+<a href="{{ route('orders.create') }}">Nouvelle commande</a> |
+<a href="{{ route('orders.index') }}">Mes commandes</a> |
 <a href="{{ route('admin') }}">Admin</a> |
 <form action="{{ route('logout') }}" method="POST" style="display:inline;">
 @csrf

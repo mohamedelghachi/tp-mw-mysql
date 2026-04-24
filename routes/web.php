@@ -22,7 +22,13 @@ Route::post('/contact', [ContactController::class, 'storeContactForm'])->name('c
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-// Routes pour les produits - accessibles uniquement aux utilisateurs connectés
+// Routes pour les produits et commandes - accessibles uniquement aux utilisateurs connectés
 Route::middleware('auth')->group(function () {
     Route::resource('products', ProductController::class);
+    Route::get('/orders', [\App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/create', function () {
+        return view('orders_create');
+    })->name('orders.create');
+    Route::post('/orders', [\App\Http\Controllers\OrderController::class, 'store'])->name('orders.store');
+    Route::get('/orders/{order}', [\App\Http\Controllers\OrderController::class, 'show'])->name('orders.show');
 });

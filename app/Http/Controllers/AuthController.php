@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use \Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -61,15 +62,15 @@ class AuthController extends Controller
             'age.integer' => 'L\'âge doit être un nombre entier.',
         ]);
         
-        // $user = \App\Models\User::create([
-        //     'name' => $validated['name'],
-        //     'email' => $validated['email'],
-        //     'password' => bcrypt($validated['password']),
-        //     'age' => $validated['age'] ?? null,
-        //     'phone' => $validated['phone'] ?? null,
-        // ]);
+        $user = \App\Models\User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'age' => $validated['age'] ?? null,
+            'phone' => $validated['phone'] ?? null,
+        ]);
         
-        // Auth::login($user);
-        // return redirect()->route('dashboard');
+        Auth::login($user);
+        return redirect()->route('dashboard');
     }
 }
