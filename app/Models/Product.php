@@ -37,6 +37,14 @@ class Product extends Model
     ];
 
     /**
+     * Relation plusieurs-à-plusieurs avec Order
+     */
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class)->withPivot('quantity')->withTimestamps();
+    }
+
+    /**
      * Scope pour les produits actifs
      */
     public function scopeActif($query)

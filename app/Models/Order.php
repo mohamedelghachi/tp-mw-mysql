@@ -20,5 +20,9 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    // Ajoutez d'autres relations si besoin (ex: produits)
+    // Relation plusieurs-à-plusieurs avec Product
+    public function products()
+    {
+        return $this->belongsToMany(Product::class)->withPivot('quantity')->withTimestamps();
+    }
 }
