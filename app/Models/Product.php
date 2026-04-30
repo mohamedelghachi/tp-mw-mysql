@@ -83,4 +83,5 @@ class Product extends Model
     {
         return !empty($this->fichier_pdf);
     }
+    
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class OrderController extends Controller
 {
@@ -30,10 +31,8 @@ class OrderController extends Controller
     }
     public function show(Order $order)
     {
-        // Vérifier que l'utilisateur connecté est bien le propriétaire de la commande
-        // if ($order->user_id !== Auth::id()) {
-        //     abort(403, 'Accès non autorisé');
-        // }
+        // Utiliser la Gate pour vérifier l'accès
+        Gate::authorize('view-order', $order);
         return view('orders_show', compact('order'));
     }
 }
